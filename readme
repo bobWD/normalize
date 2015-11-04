@@ -1,0 +1,6 @@
+audacity:
+	- silence finder: -26dB [lì scritto come "26"] 0,2 0,00
+	- export multiples "mp3"
+	- mv S.mp3 S-1.mp3
+	- generate new name with  "ls > /dev/shm/lst" & "rename.c"
+	- cat *.mp3 > all.mp3 + audacity + reencode

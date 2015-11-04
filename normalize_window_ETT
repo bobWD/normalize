@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ -z "`ls  /dev/shm/tmp 2> /dev/null | grep trash`" ]; then
+	mkdir -p /dev/shm/tmp/trash/split
+fi
+
+cp "$1" "/dev/shm/tmp/trash/"
+
+echo "Split with audacity silence finder (-26 dB; 0,2; 0,00) and save to /dev/shm/tmp/trash/split/S-%d.mp3"
+echo "[press a key to continue]"
+
+read lin
+
+audacity
+
+ls /dev/shm/tmp/trash/split > "/dev/shm/tmp/trash/lst"
+
+cd /dev/shm/tmp/trash/split
+`/home/caprioli/MyScript/rename`
+
+if [ -z "`ls  /dev/shm/tmp/trash/ 2> /dev/null | grep mp3_norm`" ]; then
+	mkdir -p /dev/shm/tmp/trash/mp3_norm
+fi
+
+for i in *; do
+	# salva direttamente in /dev/shm/tmp/trash/mp3_norm
+	/home/caprioli/MyScript/normalize_ETT "$i"
+done
+
+cd /dev/shm/tmp/trash/mp3_norm/
+cat * > ../"`echo $1| sed s/'.mp3'/'_norm'/`".mp3
+
+echo "Resave with audacity to clean headers of cat of the files mp3"
+echo "Import in audacity"
+echo "[Press a key to end this script]"
+
+read lin
