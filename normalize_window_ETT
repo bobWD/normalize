@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+	echo -e "Usage:\n\t$0: <file to normalize.mp3>"
+fi
+
 if [ -z "`ls  /dev/shm/tmp 2> /dev/null | grep trash`" ]; then
 	mkdir -p /dev/shm/tmp/trash/split
 fi

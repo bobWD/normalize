@@ -1,3 +1,6 @@
+Usage:
+	normalize_window_ETT <file_da_normalizzare.mp3>
+
 audacity:
 	- silence finder: -26dB [lì scritto come "26"] 0,2 0,00
 	- export multiples "mp3"
