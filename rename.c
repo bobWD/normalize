@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 	FILE *fp = fopen("/dev/shm/tmp/trash/lst", "r");
 	
 	int n;
-	while( fscanf(fp, "S-%d.wav.mp3\n", &n )==1 )
-		printf("mv S-%d.wav.mp3 S-%04d.wav.mp3\n", n, n);
+	while( fscanf(fp, "S-%d.mp3\n", &n )==1 )
+		printf("mv S-%d.mp3 S-%04d.mp3\n", n, n);
 	
 	
 	fclose(fp);

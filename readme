@@ -7,3 +7,7 @@ audacity:
 	- mv S.mp3 S-1.mp3
 	- generate new name with  "ls > /dev/shm/lst" & "rename.c"
 	- cat *.mp3 > all.mp3 + audacity + reencode
+
+Fix:
+	- attento agli script non aggiornati in MyScript
+	- forse cancella tutti gli 0,2 secondi di pausa che trova

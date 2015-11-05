@@ -24,7 +24,13 @@ echo "[press a key to continue]"
 
 read lin
 
-audacity
+# ETT: audacity
+
+echo "Now you should have the splitted files into /dev/shm/tmp/trash/split"
+echo "[press a key to continue]"
+read lin
+
+mv /dev/shm/tmp/trash/split/S.mp3 /dev/shm/tmp/trash/split/S-1.mp3
 
 ls /dev/shm/tmp/trash/split > "/dev/shm/tmp/trash/lst"
 
@@ -35,7 +41,9 @@ if [ -n "$DEBUG" ]; then  # DEBUG
 fi
 
 cd /dev/shm/tmp/trash/split
-`/home/caprioli/MyScript/rename`
+/home/caprioli/MyScript/rename > tmp.sh
+sh tmp.sh
+rm tmp.sh
 
 if [ -n "$DEBUG" ]; then  # DEBUG
 	echo "DEBUG pause"
