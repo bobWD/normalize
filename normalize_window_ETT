@@ -2,6 +2,7 @@
 
 if [ -z "$1" ]; then
 	echo -e "Usage:\n\t$0: <file to normalize.mp3>"
+	exit -1
 fi
 
 if [ -z "`ls  /dev/shm/tmp 2> /dev/null | grep trash`" ]; then
@@ -9,6 +10,14 @@ if [ -z "`ls  /dev/shm/tmp 2> /dev/null | grep trash`" ]; then
 fi
 
 cp "$1" "/dev/shm/tmp/trash/"
+
+DEBUG=si	# comment/decomment this to enable/disable DEBUG
+
+if [ -n "$DEBUG" ]; then  # DEBUG
+	echo "DEBUG pause"
+	echo "[press a key to continue]"
+	read lin
+fi
 
 echo "Split with audacity silence finder (-26 dB; 0,2; 0,00) and save to /dev/shm/tmp/trash/split/S-%d.mp3"
 echo "[press a key to continue]"
@@ -19,8 +28,20 @@ audacity
 
 ls /dev/shm/tmp/trash/split > "/dev/shm/tmp/trash/lst"
 
+if [ -n "$DEBUG" ]; then  # DEBUG
+	echo "DEBUG pause"
+	echo "[press a key to continue]"
+	read lin
+fi
+
 cd /dev/shm/tmp/trash/split
 `/home/caprioli/MyScript/rename`
+
+if [ -n "$DEBUG" ]; then  # DEBUG
+	echo "DEBUG pause"
+	echo "[press a key to continue]"
+	read lin
+fi
 
 if [ -z "`ls  /dev/shm/tmp/trash/ 2> /dev/null | grep mp3_norm`" ]; then
 	mkdir -p /dev/shm/tmp/trash/mp3_norm
@@ -30,6 +51,12 @@ for i in *; do
 	# salva direttamente in /dev/shm/tmp/trash/mp3_norm
 	/home/caprioli/MyScript/normalize_ETT "$i"
 done
+
+if [ -n "$DEBUG" ]; then  # DEBUG
+	echo "DEBUG pause"
+	echo "[press a key to continue]"
+	read lin
+fi
 
 cd /dev/shm/tmp/trash/mp3_norm/
 cat * > ../"`echo $1| sed s/'.mp3'/'_norm'/`".mp3
