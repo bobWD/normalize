@@ -1,4 +1,5 @@
 Usage:
+	(modificare eventualmente la variabile NORMALIZE_PROJECT_DIR con la dir corrente del progetto)
 	normalize_window_ETT <file_da_normalizzare.mp3>
 
 audacity:
@@ -9,5 +10,5 @@ audacity:
 	- cat *.mp3 > all.mp3 + audacity + reencode
 
 Fix:
-	- attento agli script non aggiornati in MyScript
 	- forse cancella tutti gli 0,2 secondi di pausa che trova
+	- redirezionare output di ffmpeg a null

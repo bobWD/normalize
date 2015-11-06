@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NORMALIZE_PROJECT_DIR="/home/caprioli/personal docs/project/normalize/normalize_ETT"
+
 if [ -z "$1" ]; then
 	echo -e "Usage:\n\t$0: <file to normalize.mp3>"
 	exit -1
@@ -41,7 +43,7 @@ if [ -n "$DEBUG" ]; then  # DEBUG
 fi
 
 cd /dev/shm/tmp/trash/split
-/home/caprioli/MyScript/rename > tmp.sh
+${NORMALIZE_PROJECT_DIR}/rename > tmp.sh
 sh tmp.sh
 rm tmp.sh
 
@@ -57,7 +59,7 @@ fi
 
 for i in *; do
 	# salva direttamente in /dev/shm/tmp/trash/mp3_norm
-	/home/caprioli/MyScript/normalize_ETT "$i"
+	${NORMALIZE_PROJECT_DIR}/normalize_ETT "$i"
 done
 
 if [ -n "$DEBUG" ]; then  # DEBUG
