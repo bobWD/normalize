@@ -5,4 +5,4 @@ dB_to_boost=`ffmpeg -i "$1" -af "volumedetect" -f null /dev/null &>/dev/stdout |
 #volendo rifare il passaggio che al primo step fa un file con -0.1 dB di peak... e rinormalizzando il file si arriv a 0dB
 #... oppure fare anche un'analisi di verifica per vedere il max_dB_peak dell'output'
 
-ffmpeg -i "$1" -af "volume=${dB_to_boost}dB"  -ab 128k -c:a libmp3lame /dev/shm/tmp/trash/mp3_norm/"`echo $1| sed s/'.mp3'/'_norm'/`".mp3 &>/dev/stdout
+ffmpeg -i "$1" -af "volume=${dB_to_boost}dB"  -ab 128k -c:a libmp3lame /dev/shm/tmp/trash/mp3_norm/"`echo $1| sed s/'.mp3'/'_norm'/`".mp3 &>/dev/null

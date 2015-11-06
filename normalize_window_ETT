@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NORMALIZE_PROJECT_DIR="/home/caprioli/personal docs/project/normalize/normalize_ETT"
+NORMALIZE_PROJECT_DIR="/home/caprioli/personal docs/project/normalize"
 
 if [ -z "$1" ]; then
 	echo -e "Usage:\n\t$0: <file to normalize.mp3>"
@@ -22,11 +22,12 @@ if [ -n "$DEBUG" ]; then  # DEBUG
 fi
 
 echo "Split with audacity silence finder (-26 dB; 0,2; 0,00) and save to /dev/shm/tmp/trash/split/S-%d.mp3"
-echo "[press a key to continue]"
+echo "(should include before first label named as S-0 and check no more 9999 pices"
+echo "[press a key to continue (audacity will open automatically)]"
 
 read lin
 
-# ETT: audacity
+audacity /dev/shm/tmp/trash/"$1"
 
 echo "Now you should have the splitted files into /dev/shm/tmp/trash/split"
 echo "[press a key to continue]"
@@ -43,7 +44,7 @@ if [ -n "$DEBUG" ]; then  # DEBUG
 fi
 
 cd /dev/shm/tmp/trash/split
-${NORMALIZE_PROJECT_DIR}/rename > tmp.sh
+"${NORMALIZE_PROJECT_DIR}"/rename > tmp.sh
 sh tmp.sh
 rm tmp.sh
 
@@ -59,7 +60,7 @@ fi
 
 for i in *; do
 	# salva direttamente in /dev/shm/tmp/trash/mp3_norm
-	${NORMALIZE_PROJECT_DIR}/normalize_ETT "$i"
+	"${NORMALIZE_PROJECT_DIR}"/normalize_ETT "$i"
 done
 
 if [ -n "$DEBUG" ]; then  # DEBUG
@@ -73,6 +74,17 @@ cat * > ../"`echo $1| sed s/'.mp3'/'_norm'/`".mp3
 
 echo "Resave with audacity to clean headers of cat of the files mp3"
 echo "Import in audacity"
-echo "[Press a key to end this script]"
+echo "[Press a key to end this script and open audacity and after delete all working file]"
 
 read lin
+
+audacity /dev/shm/tmp/trash/"`echo $1| sed s/'.mp3'/'_norm'/`".mp3
+
+if [ -n "$DEBUG" ]; then  # DEBUG
+	echo "DEBUG pause"
+	echo "[press a key to continue before deletion]"
+	read lin
+fi
+
+cp /dev/shm/tmp/trash/"`echo $1| sed s/'.mp3'/'_norm'/`".mp3 /dev/shm
+rm -R /dev/shm/tmp/trash/
