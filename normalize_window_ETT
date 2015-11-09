@@ -13,7 +13,7 @@ fi
 
 cp "$1" "/dev/shm/tmp/trash/"
 
-DEBUG=si	# comment/decomment this to enable/disable DEBUG
+# ETT: DEBUG=si	# comment/decomment this to enable/disable DEBUG
 
 if [ -n "$DEBUG" ]; then  # DEBUG
 	echo "DEBUG pause"
