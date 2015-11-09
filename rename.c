@@ -14,7 +14,8 @@ int main(int argc, char **argv)
 	
 	int n;
 	while( fscanf(fp, "S-%d.mp3\n", &n )==1 )
-		printf("mv S-%d.mp3 S-%04d.mp3\n", n, n);
+		if(n<1000)
+			printf("mv S-%d.mp3 S-%04d.mp3\n", n, n);
 	
 	
 	fclose(fp);
