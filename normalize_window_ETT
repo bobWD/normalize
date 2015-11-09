@@ -21,8 +21,8 @@ if [ -n "$DEBUG" ]; then  # DEBUG
 	read lin
 fi
 
-echo "Split with audacity silence finder (-26 dB; 0,2; 0,00) and save to /dev/shm/tmp/trash/split/S-%d.mp3"
-echo "(should include before first label named as S-0 and check no more 9999 pices"
+echo "Split with audacity silence finder (-26 dB; 0,1; 0,00) and save to /dev/shm/tmp/trash/split/S-%d.mp3"
+echo "(should include before first label named as S-0 and check no more than 9999 pices"
 echo "[press a key to continue (audacity will open automatically)]"
 
 read lin
